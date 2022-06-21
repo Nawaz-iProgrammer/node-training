@@ -21,12 +21,10 @@ const addNotes = (title, body) => {
   }
 };
 
-const removeNotes = function (title) {
+const removeNotes = (title) => {
   const notes = loadNotes();
 
-  const noteFiltered = notes.filter(function (note) {
-    return note.title !== title;
-  });
+  const noteFiltered = notes.filter((note) => note.title !== title);
 
   if (noteFiltered.length !== notes.length) {
     saveNotes(noteFiltered);
