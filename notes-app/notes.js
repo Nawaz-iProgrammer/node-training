@@ -1,15 +1,11 @@
 const fs = require('fs');
 
-const getNotes = () => {
-  return 'Your notes...';
-};
-
-const addNotes = (title, body) => {
+const addNote = (title, body) => {
   const notes = loadNotes();
 
-  const duplicatNotes = notes.filter((note) => note.title === title);
+  const duplicateNote = notes.find((note) => note.title === title);
 
-  if (duplicatNotes.length === 0) {
+  if (!duplicateNote) {
     notes.push({
       title: title,
       body: body,
@@ -21,7 +17,7 @@ const addNotes = (title, body) => {
   }
 };
 
-const removeNotes = (title) => {
+const removeNote = (title) => {
   const notes = loadNotes();
 
   const noteFiltered = notes.filter((note) => note.title !== title);
@@ -37,6 +33,18 @@ const removeNotes = (title) => {
 const listNotes = () => {
   const notes = loadNotes();
   notes.forEach((note) => console.log(note.title));
+};
+
+const readNote = (title) => {
+  const notes = loadNotes();
+
+  const getNote = notes.find((note) => note.title === title);
+
+  if (getNote) {
+    console.log(`Title : ${getNote.title}, Description : ${getNote.body}`);
+  } else {
+    console.log('Note does not exist');
+  }
 };
 
 const saveNotes = (notes) => {
@@ -55,8 +63,8 @@ const loadNotes = () => {
 };
 
 module.exports = {
-  getNotes,
-  addNotes,
-  removeNotes,
+  addNote,
+  removeNote,
   listNotes,
+  readNote,
 };

@@ -19,7 +19,7 @@ yargs.command({
     },
   },
   handler(argv) {
-    notes.addNotes(argv.title, argv.body);
+    notes.addNote(argv.title, argv.body);
   },
 });
 
@@ -35,15 +35,23 @@ yargs.command({
     },
   },
   handler(argv) {
-    notes.removeNotes(argv.title);
+    notes.removeNote(argv.title);
   },
 });
 
+// Read the note
 yargs.command({
   command: 'read',
   describe: 'Read a note',
-  handler() {
-    console.log('Reading the note...');
+  builder: {
+    title: {
+      describe: 'Note title',
+      demandOption: true,
+      type: 'string',
+    },
+  },
+  handler(argv) {
+    notes.readNote(argv.title);
   },
 });
 
