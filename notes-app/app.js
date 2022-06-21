@@ -2,6 +2,7 @@ const chalk = require('chalk');
 const yargs = require('yargs');
 const notes = require('./notes');
 
+// Add a note
 yargs.command({
   command: 'add',
   describe: 'Add a new note',
