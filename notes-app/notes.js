@@ -1,20 +1,50 @@
 const fs = require('fs');
 
-const getNotes = () => {
-  return 'Your notes...';
-};
-
-const addNotes = (title, body) => {
+const addNote = (title, body) => {
   const notes = loadNotes();
 
-  const duplicatNotes = notes.filter((note) => note.title === title);
+  const duplicateNote = notes.find((note) => note.title === title);
 
-  notes.push({
-    title: title,
-    body: body,
-  });
+  if (!duplicateNote) {
+    notes.push({
+      title: title,
+      body: body,
+    });
+    saveNotes(notes);
+    console.log('New note added...');
+  } else {
+    console.log('Note title taken...');
+  }
+};
 
-  saveNotes(notes);
+const removeNote = (title) => {
+  const notes = loadNotes();
+
+  const noteFiltered = notes.filter((note) => note.title !== title);
+
+  if (noteFiltered.length !== notes.length) {
+    saveNotes(noteFiltered);
+    console.log('Note removed');
+  } else {
+    console.log('Note does not exist');
+  }
+};
+
+const listNotes = () => {
+  const notes = loadNotes();
+  notes.forEach((note) => console.log(note.title));
+};
+
+const readNote = (title) => {
+  const notes = loadNotes();
+
+  const getNote = notes.find((note) => note.title === title);
+
+  if (getNote) {
+    console.log(`Title : ${getNote.title}, Description : ${getNote.body}`);
+  } else {
+    console.log('Note does not exist');
+  }
 };
 
 const saveNotes = (notes) => {
@@ -33,6 +63,8 @@ const loadNotes = () => {
 };
 
 module.exports = {
-  getNotes,
-  addNotes,
+  addNote,
+  removeNote,
+  listNotes,
+  readNote,
 };
