@@ -8,13 +8,15 @@ const forecast = (latitude, longitude, callback) => {
     longitude +
     '&units=f';
 
-  request({ url: url, json: true }, (error, response) => {
+  // request({ url: url, json: true }, (error, response)
+
+  request({ url, json: true }, (error, { body }) => {
     if (error) {
       callback('Unable to connect to the service');
-    } else if (response.body.error) {
+    } else if (body.error) {
       callback('Unable to find, enter the correct details');
     } else {
-      callback(undefined, response.body.location);
+      callback(undefined, `Pressure is ${body.current['pressure']}`);
     }
   });
 };
