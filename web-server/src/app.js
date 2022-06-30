@@ -44,7 +44,7 @@ app.get('/help', (req, res) => {
 app.get('/weather', (req, res) => {
   if (!req.query.address) {
     return res.send({
-      Error: 'Provide the address name',
+      error: 'Provide the address name',
     });
   }
 
@@ -53,7 +53,7 @@ app.get('/weather', (req, res) => {
   geocode(address, (error, { latitude, longitude, location } = {}) => {
     if (error) {
       return res.send({
-        Error: 'Enter a valid address',
+        error,
       });
     }
 
@@ -71,11 +71,6 @@ app.get('/weather', (req, res) => {
       });
     });
   });
-
-  // res.send({
-  //   forecast: 'Rain',
-  //   address: req.query.address,
-  // });
 });
 
 app.get('/products', (req, res) => {
