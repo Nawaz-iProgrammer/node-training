@@ -1,7 +1,12 @@
-const { MongoClient } = require('mongodb');
+const { MongoClient, ObjectId } = require('mongodb');
 
 const connectionURL = 'mongodb://127.0.0.1:27017';
 const databaseName = 'task-manager';
+
+const id = new ObjectId();
+console.log(id.toString());
+console.log(id.getTimestamp().toLocaleTimeString());
+console.log(id.id);
 
 MongoClient.connect(connectionURL, (error, client) => {
   if (error) {
@@ -35,18 +40,18 @@ MongoClient.connect(connectionURL, (error, client) => {
   //   },
   // ]);
 
-  db.collection('tasks').insertMany([
-    {
-      description: 'Clean the mirror',
-      completed: true,
-    },
-    {
-      description: 'Water the plants',
-      completed: false,
-    },
-    {
-      description: 'Repair T.V',
-      completed: false,
-    },
-  ]);
+  // db.collection('tasks').insertMany([
+  //   {
+  //     description: 'Clean the mirror',
+  //     completed: true,
+  //   },
+  //   {
+  //     description: 'Water the plants',
+  //     completed: false,
+  //   },
+  //   {
+  //     description: 'Repair T.V',
+  //     completed: false,
+  //   },
+  // ]);
 });
