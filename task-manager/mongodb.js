@@ -11,7 +11,7 @@ MongoClient.connect(connectionURL, (error, client) => {
   const db = client.db(databaseName);
 
   db.collection('users')
-    .updateMany({ age: 22 }, { $inc: { age: 20 } })
+    .deleteMany({ age: 42 })
     .then((result) => {
       console.log(result);
     })
