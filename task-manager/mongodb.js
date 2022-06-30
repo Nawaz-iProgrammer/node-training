@@ -10,8 +10,43 @@ MongoClient.connect(connectionURL, (error, client) => {
 
   const db = client.db(databaseName);
 
-  db.collection('users').insertOne({
-    name: 'Peter',
-    age: 30,
-  });
+  // db.collection('users').insertOne(
+  //   {
+  //     name: 'Peter',
+  //     age: 30,
+  //   },
+  //   (error, result) => {
+  //     if (error) {
+  //       console.log(error);
+  //     }
+
+  //     console.log(result);
+  //   }
+  // );
+
+  // db.collection('users').insertMany([
+  //   {
+  //     name: 'Kane',
+  //     age: 31,
+  //   },
+  //   {
+  //     name: 'Orton',
+  //     age: 32,
+  //   },
+  // ]);
+
+  db.collection('tasks').insertMany([
+    {
+      description: 'Clean the mirror',
+      completed: true,
+    },
+    {
+      description: 'Water the plants',
+      completed: false,
+    },
+    {
+      description: 'Repair T.V',
+      completed: false,
+    },
+  ]);
 });
