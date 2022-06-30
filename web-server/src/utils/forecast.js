@@ -12,9 +12,9 @@ const forecast = (latitude, longitude, callback) => {
 
   request({ url, json: true }, (error, { body }) => {
     if (error) {
-      callback('Unable to connect to the service');
+      callback('Unable to connect to the service', undefined);
     } else if (body.error) {
-      callback('Unable to find, enter the correct details');
+      callback('Unable to find, enter the correct details', undefined);
     } else {
       callback(undefined, `Pressure is ${body.current['pressure']}`);
     }
