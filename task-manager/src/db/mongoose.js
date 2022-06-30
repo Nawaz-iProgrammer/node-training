@@ -11,12 +11,32 @@ const User = mongoose.model('User', {
   },
 });
 
-const me = new User({
-  name: 'Rock',
-  age: 56,
+// const me = new User({
+//   name: 'Rock',
+//   age: 56,
+// });
+
+// me.save()
+//   .then((result) => {
+//     console.log(result);
+//   })
+//   .catch((error) => {
+//     console.log(error);
+//   });
+
+const Task = mongoose.model('Task', {
+  description: {
+    type: String,
+  },
+  completed: {
+    type: Boolean,
+  },
 });
 
-me.save()
+const tasks = new Task({ description: 'Buy grocery', completed: false });
+
+tasks
+  .save()
   .then((result) => {
     console.log(result);
   })
