@@ -20,6 +20,18 @@ const User = mongoose.model('User', {
       }
     },
   },
+  password: {
+    type: String,
+    required: true,
+    minlength: 7,
+    trim: true,
+    validate(value) {
+      const pass = value.includes('password');
+      if (pass) {
+        throw new Error('Enter a strong password');
+      }
+    },
+  },
   age: {
     type: Number,
     default: 0,
@@ -34,6 +46,8 @@ const User = mongoose.model('User', {
 const me = new User({
   name: '   Edge   ',
   email: '   edge@gmail.com  ',
+  age: 51,
+  password: 'paspsaijd438',
 });
 
 me.save()
@@ -44,22 +58,24 @@ me.save()
     console.log(error);
   });
 
-// const Task = mongoose.model('Task', {
-//   description: {
-//     type: String,
-//   },
-//   completed: {
-//     type: Boolean,
-//   },
-// });
+const Task = mongoose.model('Task', {
+  description: {
+    type: String,
+    required: true,
+  },
+  completed: {
+    type: Boolean,
+    default: false,
+  },
+});
 
-// const tasks = new Task({ description: 'Buy grocery', completed: false });
+const tasks = new Task({ description: 'Buy grocery', completed: false });
 
-// tasks
-//   .save()
-//   .then((result) => {
-//     console.log(result);
-//   })
-//   .catch((error) => {
-//     console.log(error);
-//   });
+tasks
+  .save()
+  .then((result) => {
+    console.log(result);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
