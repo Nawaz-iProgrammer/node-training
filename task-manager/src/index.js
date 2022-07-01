@@ -60,6 +60,31 @@ app.post('/tasks', (req, res) => {
     });
 });
 
+app.get('/tasks', (req, res) => {
+  Task.find({})
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((error) => {
+      res.status(500).send(error);
+    });
+});
+
+app.get('/tasks/:id', (req, res) => {
+  const _id = req.params.id;
+
+  Task.findById(_id)
+    .then((result) => {
+      if (!result) {
+        return res.status(404).send();
+      }
+      res.send(result);
+    })
+    .catch((error) => {
+      res.status(500).send(error);
+    });
+});
+
 app.listen(port, () => {
   console.log('Server is up on port ' + port);
 });
