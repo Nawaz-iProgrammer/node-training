@@ -2,15 +2,21 @@
   "name": "tak-manager",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
-    "start": "nodemon mongodb"
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.18.1",
+    "joi": "^17.6.0",
     "mongodb": "^4.7.0",
+    "mongoose": "^6.4.1"
+  },
+  "devDependencies": {
     "nodemon": "^2.0.18"
   }
 }
